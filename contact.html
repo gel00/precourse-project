@@ -57,6 +57,12 @@ Leave you comment here
         </form>
     </main>
 
+    <footer>
+        <dl id="currentMessages">
+
+        </dl>
+    </footer>
+
     <script>
         function submitMessage(event) {
             event.preventDefault();
@@ -83,7 +89,35 @@ Leave you comment here
                 "messages",
                 JSON.stringify(currentMessages)
             );
+
+            renderMessages();
         }
+
+        function renderMessages() {
+            let currentMessages = [];
+
+            if (window.sessionStorage.getItem("messages")) {
+                currentMessages = 
+                    JSON.parse(
+                        window.sessionStorage.getItem("messages")
+                    );
+            }
+
+            let listItems = [];
+            for (let i = 0; i < currentMessages.length; i++) {
+                let listItem = "";
+                const currentMessage = currentMessages[i];
+                listItem += `<dt>${currentMessage.fullName} - ${currentMessage.email}</dt>`;
+                listItem += `<dd>${currentMessage.feedbackType}: ${currentMessage.comment}</dd>`;
+                listItem += `<br />`;
+                listItems.push(listItem);
+            }
+
+            let descList = document.getElementById('currentMessages');
+            descList.innerHTML = listItems.join('');
+        }
+
+        renderMessages();
     </script>
 </body>    
 </html>
