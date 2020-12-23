@@ -30,7 +30,7 @@
     </header>
 
     <main>
-        <form class="contact-form">
+        <form class="contact-form" onsubmit="return submitMessage(event);">
             <!-- Email -->
             <label for="email">Email: </label>
             <input type="text" name="email" id="email" required>
@@ -56,5 +56,34 @@ Leave you comment here
             <input type="submit" value="Submit">
         </form>
     </main>
+
+    <script>
+        function submitMessage(event) {
+            event.preventDefault();
+            const email = document.getElementById("email").value;
+            const fullName = document.getElementById("fullName").value;
+            const feedbackType = document.getElementById("feedbackType").value;
+            const comment = document.getElementById("comment").value;
+
+            const messageObject = {
+                email, fullName, feedbackType, comment
+            };
+
+            let currentMessages = [];
+
+            if (window.sessionStorage.getItem("messages")) {
+                currentMessages = 
+                    JSON.parse(
+                        window.sessionStorage.getItem("messages")
+                    );
+            }
+
+            currentMessages.push(messageObject);
+            window.sessionStorage.setItem(
+                "messages",
+                JSON.stringify(currentMessages)
+            );
+        }
+    </script>
 </body>    
 </html>
