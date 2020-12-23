@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="contact.css">
     <title>Calum's Cafe</title>
+    <meta charset="utf-8">
 </head>
 <body>
     <nav>
@@ -29,13 +30,13 @@
     </header>
 
     <main>
-        <div class="contact-form">
+        <form class="contact-form">
             <!-- Email -->
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" required>
             <!-- Full name -->
             <label for="fullName">Full Name:</label>
-            <input type="text" name="fullName" id="fullName">
+            <input type="text" name="fullName" id="fullName" required>
             <!-- Reason for comment -->
             <label for="feedbackType">Feedback Type: </label>
             <select name="feedbackType" id="feedbackType">
@@ -45,17 +46,15 @@
             </select>
             <!-- Comment -->
             <label for="comment">Comment: </label>
-            <textarea name="comment" id="comment" rows="3" cols="30">
+            <textarea name="comment" id="comment" rows="3" cols="30" required>
 Leave you comment here                
             </textarea>
 
             <!-- Clear button -->
             <button>Clear</button>
             <!-- Submit button -->
-            <button>Submit</button>
-
-        </div>
+            <input type="submit" value="Submit">
+        </form>
     </main>
-
 </body>    
 </html>
