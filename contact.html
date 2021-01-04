@@ -58,12 +58,26 @@ Leave you comment here
     </main>
 
     <footer>
-        <dl id="currentMessages">
+        <div class="form-title-section">
+            <h3>Contact Messages</h3>
+            <button onclick="deleteMessages();">Clear Messages</button>
+        </div>
+        <div class="form-wrapper">
+            <dl id="currentMessages">
 
-        </dl>
+            </dl>
+        </div>
     </footer>
 
     <script>
+        function deleteMessages() {
+            if (window.sessionStorage.getItem("messages")) {
+                window.sessionStorage.removeItem("messages");
+            }
+
+            renderMessages();
+        }
+
         function submitMessage(event) {
             event.preventDefault();
             const email = document.getElementById("email").value;
